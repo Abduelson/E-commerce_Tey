@@ -17,7 +17,7 @@
         $chemin_image_temporaire = $_FILES['Image']['tmp_name'];
     
         // Définir le dossier de destination pour enregistrer l'image
-        $dossier_destination = $_SERVER['DOCUMENT_ROOT'] . "/E-commerce_Tey/E-commercz/Images/";
+        $dossier_destination = $_SERVER['DOCUMENT_ROOT'] . "/E-commerce_Tey/E-commerce_Tey/Images/";
         if (move_uploaded_file($chemin_image_temporaire, $dossier_destination . $nom_image)) {
           
             // Requête pour insérer les données dans la table produit

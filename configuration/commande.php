@@ -13,7 +13,7 @@
 
   function Afficher_4(){
     if(require("connexion_config.php")){
-         $reqette= $acess->prepare("SELECT * FROM Produits ORDER BY Dates DESC LIMIT 4");
+         $reqette= $acess->prepare("SELECT * FROM Produits ORDER BY Dates DESC LIMIT 7");
          $reqette->execute();
 
          $data= $reqette->fetchAll(PDO::FETCH_OBJ);

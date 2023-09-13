@@ -116,19 +116,19 @@ if(isset($_SESSION['initiale_nom']) && isset($_SESSION['initiale_prenom']) && is
                         </div>
             
                         <div class="Card_body">
-                            <div class="title">
+                            <!-- <div class="title">
                                 <h3>NOM: <?=$prods['Nom']?></h3>
-                            </div>
+                            </div> -->
                             <div class="Price">
                                 <h4>PRICE: $<?=$prods['Prix']?></h4>
                             </div>
-                            <div class="etoile">
+                            <!-- <div class="etoile">
                                     <img src="Images/star-solid-24.png" alt="">
                                     <img src="Images/star-solid-24.png" alt="">
                                     <img src="Images/star-solid-24.png" alt="">
                                     <img src="Images/star-solid-24.png" alt="">
                                     <img src="Images/star-half-solid-24.png" alt="">
-                            </div>
+                            </div> -->
                             <div class="Buttom">
                                <form action="Acheter.php" method="GET">
                                 <input type="hidden" name="id" value="<?=$prods['Id_prod']?>">
@@ -166,19 +166,19 @@ if(isset($_SESSION['initiale_nom']) && isset($_SESSION['initiale_prenom']) && is
                         </div>
             
                         <div class="Card_body">
-                            <div class="title">
+                            <!-- <div class="title">
                                 <h3>NOM: <?=$prod->Nom?></h3>
-                            </div>
+                            </div> -->
                             <div class="Price">
                                 <h4>PRICE: $<?=$prod->Prix?></h4>
                             </div>
-                            <div class="etoile">
+                            <!-- <div class="etoile">
                                     <img src="Images/star-solid-24.png" alt="">
                                     <img src="Images/star-solid-24.png" alt="">
                                     <img src="Images/star-solid-24.png" alt="">
                                     <img src="Images/star-solid-24.png" alt="">
                                     <img src="Images/star-half-solid-24.png" alt="">
-                            </div>
+                            </div> -->
                             <div class="Buttom">
                                <form action="Acheter.php" method="GET">
                                 <input type="hidden" name="id" value="<?=$prod->Id_prod?>">
