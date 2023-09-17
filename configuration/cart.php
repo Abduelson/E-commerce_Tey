@@ -11,13 +11,20 @@ function addToCart($idProd, $qte, $userId){
         $stmt->bindParam(':userId',$userId);
         $stmt->bindParam(':quantite',$qte);
 
+        if(verifyQuantity($qte, $idProd)){
             if($stmt->execute()){
                 echo "Added to cart successfully!";
             }
+        }else{
+            echo "We could not provide the quantity you need for this product.";
+        }
+            
 
     }
 }
 }
+
+
 
 
 function commander($user_id)
@@ -30,9 +37,8 @@ function commander($user_id)
             $quantite = $product['quantite'];
             $prix = $product['quantite'] * $product['Prix'];
             $dates = $product['Dates'];
-            $idprod=$product['idProduit'];
+            $idprod =$product['idProduit'];
             $iduser=$product['user_id'];
-            // $total += 
         
             // Insérer les éléments dans une autre table
             $insertReq = $acess->prepare("INSERT INTO Commander (Images, Quantite, Prix, Dates, Id_user ,id_prod) VALUES (:images, :quantite, :prix, :dates, :iduser ,:idpro )");
@@ -42,7 +48,9 @@ function commander($user_id)
             $insertReq->bindParam(':dates', $dates);
             $insertReq->bindParam(':iduser', $iduser);
             $insertReq->bindParam(':idpro', $idprod);
-            $insertReq->execute();
+            if($insertReq->execute()){
+                updateProductQuantity($quantite, $idprod);
+            }
         }
         // $message .= "Total: $". $total;
         echo "Merci d'avoir choisi TeyouShop";
@@ -68,4 +76,30 @@ function deleteAllItem($user_id){
         $stmt->execute();
     }
 }
+
+function verifyQuantity($quantity, $idProduit){
+    if(require("connexion_config.php")){
+        $stmt = $acess->prepare("SELECT Quantite FROM produits WHERE Id_prod =:Id_prod");
+        $stmt->bindParam(':Id_prod',$idProduit);
+        $stmt->execute();
+        }
+
+        $quantite = $stmt->fetchColumn();
+        if($quantite < $quantity){
+            return false;
+        }else{
+            return true;
+        }
+        
+    }
+
+    function updateProductQuantity($quantity, $idProd){
+        
+        if(require("connexion_config.php")){
+            $stmt = $acess->prepare("UPDATE produits SET Quantite = (Quantite - :Quantite)  WHERE Id_prod =:Id_prod");
+            $stmt->bindParam(':Id_prod',$idProd);
+            $stmt->bindParam(':Quantite',$quantity);
+            $stmt->execute();
+            }
+    }
 ?>

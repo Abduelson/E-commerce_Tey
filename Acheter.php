@@ -121,7 +121,7 @@ if (isset($_GET['id'])) {
                 <p style="padding-bottom: 15px;"><?php echo $produit['Description']; ?></p>
 
                 <div class="main_price">
-                    <h1>$<?php echo $produit['Prix']; ?></h1>
+                    <h1>$<?=  $produit['Prix']; ?></h1>
                     <p>50%</p>
                 </div>
                 <p style="padding-bottom: 20px; text-decoration: line-through;">$<?php echo $produit['Prix']/2; ?></p>
@@ -129,17 +129,45 @@ if (isset($_GET['id'])) {
                 <div class="main_botom">
                     <div class="main_controle">
                         <input type="number" id="qteProd" name="nombre" min=1 value="1" >
+                        
                         <button>
                                 <?php if (isset($_SESSION['user'])) { ?>
-                                    <li style="list-style: none;">
-                                    <input type="button" class="bouton" value="Add to cart" onclick="addToCart(<?=$produit['Id_prod']?>,<?= $intial_user ?>)" >
+                                    <li style="list-style: none; border: none;">
+                                    <button type="button" class="bouton" value="Add to cart" onclick="addToCart(<?=$produit['Id_prod']?>,<?= $intial_user ?>)" >Add to cart</button>
                                     </li>
                                 <?php } else { ?>
                                     <li class="liClass"><a href="login.php">login</a></li>
                                 <?php } ?>
                             </a>
                         </button>
+                        
                     </div>
+                    <?php if($produit['Quantite'] < 10){ ?>
+                    <span class="left">Only <?= $produit['Quantite'] ?> left in stock</span>
+                    <?php } ?>
+                    <style>
+                        .left{
+                            color: red !important;
+                            font-size: 15px;
+                            font-style: italic;
+                            /* background-color: #ddd; */
+                            padding: 5px 0px;
+                        }
+
+                        .bouton{
+                            background-color: rgb(29, 234, 234);
+                            padding: 10px 10px;
+                            border: none;
+                            color: #3b3d3b;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-weight: bold;
+                        }
+
+                        .bouton:hover{
+                            background-color: rgb(10, 200, 200);
+                        }
+                    </style>
                 </div>
             </div>
         </div>

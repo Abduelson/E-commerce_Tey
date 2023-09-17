@@ -105,11 +105,10 @@ function addToCart(idProduit, user_id) {
                     icon: 'success',
                     title: response,
                     showConfirmButton: false,
-                    timer: 2000
+                    timer: 2500
                 }).then(function() {
                     location.reload();
                 });
-                // location.reload();
         }
             
      });
