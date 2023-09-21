@@ -173,7 +173,4 @@ function InfoUser($statut){
   }
 }
 
-
-
-
 ?> 
