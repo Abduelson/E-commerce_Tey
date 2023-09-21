@@ -11,7 +11,6 @@ if(isset($_SESSION['initiale_nom']) && isset($_SESSION['initiale_prenom']) && is
 }
 
 $produits= Afficher_4();
-
 ?>
 
 <!DOCTYPE html>
@@ -41,83 +40,84 @@ $produits= Afficher_4();
 </head>
 <body>
     <section class="section_2">
-    <header>
-              <div class="logo">
-                  <a href="index.php" style="display: flex; text-decoration: none;"><h1 style="color: black;">Teyou<span>Shop</span></h1>
-                  <img src="Images/shopping-bag.png" alt="" width="30px" height="40px"></a>
-              </div>
-              <div class="humberger">
-                  <div class="line"></div>
-                  <div class="line"></div>
-                  <div class="line"></div>
-              </div>
+        <!-- header -->
+        <header>
+                <div class="logo">
+                    <a href="index.php" style="display: flex; text-decoration: none;"><h1 style="color: black;">Teyou<span>Shop</span></h1>
+                    <img src="Images/shopping-bag.png" alt="" width="30px" height="40px"></a>
+                </div>
+                <div class="humberger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
 
-              <nav class="nav-bar">
-                  <ul>
-                      <li><a href="index.php" class="active">Acceuil</a></li>
-                      <li><a href="Boutique.php">Boutique</a></li>
-                      <li><a href="About.php">About</a></li>
-                      <li><a href="Service_client.php">Service client</a></li>
-                      <li>
-                            <?php 
-                            if(isset($_SESSION['initiale_nom']) && isset($_SESSION['user'])){
-                                ?>
-                                <div class="dropdown">
-                                <button class="dropdown-btn">
-                                <img src="<?php echo $avatarUrl; ?>" alt="<?php echo $initiale_nom . ' ' . $initiale_prenom; ?>" class="avatar" style="height: 30px; width: 30px;">
-                                </button>
-                                <div class="dropdown-content">
-                                  <a href="deconexion.php">Déconnexion</a>
+                <nav class="nav-bar">
+                    <ul>
+                        <li><a href="index.php" class="active">Acceuil</a></li>
+                        <li><a href="Boutique.php">Boutique</a></li>
+                        <li><a href="About.php">About</a></li>
+                        <li><a href="Service_client.php">Service client</a></li>
+                        <li>
+                                <?php 
+                                if(isset($_SESSION['initiale_nom']) && isset($_SESSION['user'])){
+                                    ?>
+                                    <div class="dropdown">
+                                    <button class="dropdown-btn">
+                                    <img src="<?php echo $avatarUrl; ?>" alt="<?php echo $initiale_nom . ' ' . $initiale_prenom; ?>" class="avatar" style="height: 30px; width: 30px;">
+                                    </button>
+                                    <div class="dropdown-content">
+                                    <a href="deconexion.php">Déconnexion</a>
+                                    </div>
                                 </div>
-                              </div>
-                              <?php
+                                <?php
+                                }
+                                else{
+                                    ?>
+                                    <li class="log"><a href="login.php">login</a></li>
+                                    <?php
+                                }
+                                
+                                ?>
+                                <?php if(isset($_SESSION['user'])){   ?>
+                        </li>
+
+                            <?php 
+                            if($_SESSION['Etat'] !== "Admin"){
+                                ?>
+                                <li class="imjcart">
+                                <a href="myCart.php">
+                                    <span style="position: absolute; color: red;"><?php echo $cartNumber; ?></span>
+                                    <img src="Images/offer.png" alt="">
+                                </a>
+                        </li>
+                            <?php 
                             }
                             else{
                                 ?>
-                                <li class="log"><a href="login.php">login</a></li>
+                                <li class="log"><a href="Admin.php">Admin</a></li>
                                 <?php
                             }
-                            
                             ?>
-                            <?php if(isset($_SESSION['user'])){   ?>
-                      </li>
+                    </ul>
 
-                        <?php 
-                          if($_SESSION['Etat'] !== "Admin"){
-                            ?>
-                            <li class="imjcart">
-                            <a href="myCart.php">
-                                <span style="position: absolute; color: red;"><?php echo $cartNumber; ?></span>
-                                <img src="Images/offer.png" alt="">
-                            </a>
-                       </li>
-                          <?php 
-                          }
-                          else{
-                            ?>
-                            <li class="log"><a href="Admin.php">Admin</a></li>
-                            <?php
-                          }
-                        ?>
-                  </ul>
+                    <?php } ?>
 
-                  <?php } ?>
-
-              </nav>
-    </header>
-     <div class="Relative">
-        <div class="Absolute">
-        <h1>Bienvenue chez Teyou<span>Shop</span>!<br>
-            Jusqu'a <span>80% de reduction</span><br>
-            sur nos offres de la semaine</h1>
-        <button style="cursor: pointer;"><a href="Boutique.php" style="color: white; text-decoration: none;">Acheter Maintenant</a></button>
+                </nav>
+        </header>
+        <div class="Relative">
+            <div class="Absolute">
+            <h1>Bienvenue chez Teyou<span>Shop</span>!<br>Prix <span>imbattables</span><br>sur vos produits préférés</h1>
+            <button style="cursor: pointer;"><a href="Boutique.php" style="color: white; text-decoration: none;">Acheter Maintenant</a></button>
+            </div>
         </div>
-     </div>
     </section>
-     <div class="livrason">
-         <h1>LIVRAISON PAYANT</h1>
+
+    <div class="livrason">
+        <h1>LIVRAISON PAYANT</h1>
     </div>
 
+    <!-- articles -->
     <section>
         <div class="Les_titre">
             <h1>INTEMPORELS</h1>
@@ -135,19 +135,13 @@ $produits= Afficher_4();
                         </div>
             
                         <div class="Card_body">
-                            <!-- <div class="title">
-                                <h3>NOM: <?=$prod->Nom?></h3>
-                            </div> -->
+                            <div class="title">
+                                <h3><?=$prod->Nom?></h3>
+                            </div> 
                             <div class="Price">
-                                <h4>PRICE: $<?=$prod->Prix?></h4>
+                                <h4>Price: $<?=$prod->Prix?></h4>
                             </div>
-                            <!-- <div class="etoile">
-                                    <img src="Images/star-solid-24.png" alt="">
-                                    <img src="Images/star-solid-24.png" alt="">
-                                    <img src="Images/star-solid-24.png" alt="">
-                                    <img src="Images/star-solid-24.png" alt="">
-                                    <img src="Images/star-half-solid-24.png" alt="">
-                            </div> -->
+                           
                             <div class="Buttom">
                                <form action="Acheter.php" method="GET">
                                 <input type="hidden" name="id" value="<?=$prod->Id_prod?>">
@@ -158,7 +152,10 @@ $produits= Afficher_4();
                 </div>
 
         <?php endforeach ?>
-
+          
+        </div>
+        <div class="btn_button">
+            <button><a href="Boutique.php">Voir tout</a></button>
         </div>
     </section>
 
@@ -206,26 +203,25 @@ $produits= Afficher_4();
             <p>© 2035 par Abduelson Lyvert. Droit reserver</p>
         </div>
     </footer> 
-<script>
+
+     <!-- Added by Jameson Innocent -->
+      <div id="myModal" class="modal">
+            <div class="modal-content">
+            <a href="#" class="close-button" onclick="closePreview()">&times;</a>
+            <iframe id="modal-iframe" name="modal-iframe" style="width:100%;height:100%;border:none;"></iframe>
+            </div>
+      </div>
+
+      <!-- Script by me -->
+      <script>
         humberger=document.querySelector(".humberger");
         humberger.onclick= function(){
         navbar=document.querySelector(".nav-bar");
         navbar.classList.toggle("active");
         }
-    </script> 
-
-
-    <!-- Added by Jameson Innocent -->
-<div id="myModal" class="modal">
-        <div class="modal-content">
-          <a href="#" class="close-button" onclick="closePreview()">&times;</a>
-          <iframe id="modal-iframe" name="modal-iframe" style="width:100%;height:100%;border:none;"></iframe>
-        </div>
-      </div>
-      </div>
-
-
-
+      </script> 
+      
+      <!-- script by Jameson -->
       <script>
         function showPreview() {
           console.log("My modal");
@@ -239,74 +235,5 @@ $produits= Afficher_4();
         document.getElementById("myModal").style.display = "none";
         }
       </script>
-
-
-<style>
-    .modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    height: 100%;
-    left: 0;
-    top: 0;
-    width: 100%;
-    overflow: auto;
-    background-color: #333;
-}
-
-.modal-content {
-    background-color: #333;
-    margin: 1em auto;
-    padding: 1em;
-    border: 1px solid var(--sidebar-color);
-    max-width: 90%;
-    height: 100%;
-    position: relative;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    animation-name: modalopen;
-    animation-duration: 0.5s;
-}
-
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 5px 10px;
-    background-color: red;
-    border-radius: 5px;
-    text-decoration: none;
-    color: var(--primary-color-light);
-    font-weight: bold;
-    z-index: 9999;
-    cursor: pointer;
-}
-
-@keyframes modalopen {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-/* Responsive  */
-
-@media screen and (min-width: 768px) {
-    .content {
-        flex-direction: row;
-    }
-
-    .modal-content {
-        background-color: var(--sidebar-color);
-        margin: 1em auto;
-        padding: 1em;
-        border: 1px solid var(--sidebar-color);
-        max-width: 50%;
-        height: 100%;
-        position: relative;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        animation-name: modalopen;
-        animation-duration: 0.5s;
-    }
-}
-</style>
-
 </body>
 </html>

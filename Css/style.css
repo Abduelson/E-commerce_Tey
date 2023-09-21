@@ -10,7 +10,7 @@
 
 .section_2{
     background-image: url('../Images/oleg-shatilov-P8VkX3Xke3Q-unsplash.jpg');
-    height: 100vh;
+    height: 95vh;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -51,7 +51,7 @@
     transition: opacity 0.3s ease-in-out;
 }
 
-button:hover{
+.Absolute button:hover{
     color: black;
     opacity: .3;
 }
@@ -222,10 +222,19 @@ header{
     height: 100%;
     width: 100%;
     object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.Card_image img:hover{
+    transform: scale(1.2);
 }
 
 .Price h4{
     font-size: 14px;
+}
+
+.title h3{
+    font-size: 15px;
 }
 
 .Buttom button{
@@ -238,7 +247,34 @@ header{
 }
 
 .Buttom button:hover{
-    opacity: 0.3;
+    opacity: 0.5;
+}
+
+.btn_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 100px;
+}
+
+.btn_button button{
+    border: 1px solid black;
+    outline: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.5s ease-in-out;
+}
+
+.btn_button button:hover{
+    background-color: #bbbbbb;
+}
+
+.btn_button button a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 @media screen and (max-width:400px) {
@@ -351,6 +387,14 @@ footer{
     display: inline-block;
     font-size: 18px;
     box-sizing: border-box;
+}
+
+.recher{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 60px 0 20px 0;
+    /* border: 1px solid red; */
 }
 
 /* About */
@@ -543,3 +587,69 @@ footer{
         margin-top: 60px;
       }
   }
+
+  /* Modal by jamson */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: auto;
+    background-color: #333;
+}
+
+.modal-content {
+    background-color: #333;
+    margin: 1em auto;
+    padding: 1em;
+    border: 1px solid var(--sidebar-color);
+    max-width: 90%;
+    height: 100%;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    animation-name: modalopen;
+    animation-duration: 0.5s;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: red;
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--primary-color-light);
+    font-weight: bold;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+@keyframes modalopen {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Responsive  */
+
+@media screen and (min-width: 768px) {
+    .content {
+        flex-direction: row;
+    }
+
+    .modal-content {
+        background-color: var(--sidebar-color);
+        margin: 1em auto;
+        padding: 1em;
+        border: 1px solid var(--sidebar-color);
+        max-width: 50%;
+        height: 100%;
+        position: relative;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        animation-name: modalopen;
+        animation-duration: 0.5s;
+    }
+}

@@ -162,6 +162,7 @@ if (isset($_GET['id'])) {
                             border-radius: 5px;
                             cursor: pointer;
                             font-weight: bold;
+                            transition: all 0.5s ease-in-out;
                         }
 
                         .bouton:hover{

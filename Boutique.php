@@ -96,9 +96,6 @@ if(isset($_SESSION['initiale_nom']) && isset($_SESSION['initiale_prenom']) && is
    
     <section>
         <div class="Les_titre">
-            <h1>DISPONIBLE</h1>
-            <div class="line"></div>
-            <p>Les plus recents</p>
              <!-- filtre pour les produits -->
              <?php 
               if(isset($_POST['nom'])){
@@ -116,19 +113,13 @@ if(isset($_SESSION['initiale_nom']) && isset($_SESSION['initiale_prenom']) && is
                         </div>
             
                         <div class="Card_body">
-                            <!-- <div class="title">
-                                <h3>NOM: <?=$prods['Nom']?></h3>
-                            </div> -->
-                            <div class="Price">
-                                <h4>PRICE: $<?=$prods['Prix']?></h4>
+                             <div class="title">
+                                <h3>Nom: <?=$prods['Nom']?></h3>
                             </div>
-                            <!-- <div class="etoile">
-                                    <img src="Images/star-solid-24.png" alt="">
-                                    <img src="Images/star-solid-24.png" alt="">
-                                    <img src="Images/star-solid-24.png" alt="">
-                                    <img src="Images/star-solid-24.png" alt="">
-                                    <img src="Images/star-half-solid-24.png" alt="">
-                            </div> -->
+                            <div class="Price">
+                                <h4>Price: $<?=$prods['Prix']?></h4>
+                            </div>
+                
                             <div class="Buttom">
                                <form action="Acheter.php" method="GET">
                                 <input type="hidden" name="id" value="<?=$prods['Id_prod']?>">
@@ -149,6 +140,10 @@ if(isset($_SESSION['initiale_nom']) && isset($_SESSION['initiale_prenom']) && is
               
              ?>
             <div class="recher">
+                <div class="div-text">
+                <h1>DISPONIBLE</h1>
+                <p>Les plus recents</p>
+                </div>
                  <form action="Boutique.php" method="POST">
                   <input type="text" style="width: 340px; border: none; outline: none; background-color: #3b3d3b; padding:  7px 7px 7px 13px; border-radius: 20px 0px 0 20px; color: white;" name="nom" placeholder="Type...">
                   <input type="submit" style="padding:7px; border-radius: 0px 20px 20px 0px; border: none; outline: none; cursor: pointer;" value="Search">
@@ -166,19 +161,13 @@ if(isset($_SESSION['initiale_nom']) && isset($_SESSION['initiale_prenom']) && is
                         </div>
             
                         <div class="Card_body">
-                            <!-- <div class="title">
-                                <h3>NOM: <?=$prod->Nom?></h3>
-                            </div> -->
+                             <div class="title">
+                                <h3>Nom: <?=$prod->Nom?></h3>
+                            </div> 
                             <div class="Price">
-                                <h4>PRICE: $<?=$prod->Prix?></h4>
+                                <h4>Price: $<?=$prod->Prix?></h4>
                             </div>
-                            <!-- <div class="etoile">
-                                    <img src="Images/star-solid-24.png" alt="">
-                                    <img src="Images/star-solid-24.png" alt="">
-                                    <img src="Images/star-solid-24.png" alt="">
-                                    <img src="Images/star-solid-24.png" alt="">
-                                    <img src="Images/star-half-solid-24.png" alt="">
-                            </div> -->
+                            
                             <div class="Buttom">
                                <form action="Acheter.php" method="GET">
                                 <input type="hidden" name="id" value="<?=$prod->Id_prod?>">
